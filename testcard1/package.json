@@ -1,10 +1,11 @@
 {
-  "name": "testcard",
+  "name": "testcard1",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "workspaces":["projects/*"],
   "scripts": {
-    "typecheck": "bun check"
+    "serve": "bun --hot ./server.ts"
   },
   "devDependencies": {
     "@types/bun": "^1.4.4",
