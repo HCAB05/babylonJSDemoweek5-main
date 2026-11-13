@@ -1,6 +1,6 @@
 import { Engine } from "@babylonjs/core";
-import createStartScene from "./createStartScene.ts";
-import createRunScene from "./createRunScene.ts";
+import createStartScene from "./createStartScene";
+import createRunScene from "./createRunScene";
 //import { ShowInspector } from "@babylonjs/inspector";
 import './main.css';
 

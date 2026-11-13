@@ -21,7 +21,6 @@ import {
 } from "@babylonjs/core";
 
 import { AdvancedDynamicTexture, Button, Control } from "@babylonjs/gui";
-
 function createTerrain(scene: Scene) {
   //Create large ground for valley environment
   const largeGroundMat = new StandardMaterial("largeGroundMat");
@@ -61,6 +60,7 @@ function createGround(scene: Scene) {
   ground.position.y = 0.01;
   return ground;
 } 
+}
 function createSky(scene: Scene) {
   const skybox = MeshBuilder.CreateBox("skyBox", { size: 150 }, scene);
   const skyboxMaterial = new StandardMaterial("skyBox", scene);
@@ -325,5 +325,4 @@ export default function createStartScene(engine: Engine) {
     camera,
   };
   return that;
-}
 }
