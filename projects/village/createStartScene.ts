@@ -1,4 +1,4 @@
-import type { SceneData } from "./interfaces ";
+import type { SceneData } from "./interfaces";
 
 import {
   ArcRotateCamera,
@@ -19,8 +19,8 @@ import {
   Vector3,
   Vector4,
 } from "@babylonjs/core";
-
 import { AdvancedDynamicTexture, Button, Control } from "@babylonjs/gui";
+
 function createTerrain(scene: Scene) {
   //Create large ground for valley environment
   const largeGroundMat = new StandardMaterial("largeGroundMat");
@@ -43,7 +43,7 @@ function createTerrain(scene: Scene) {
   largeGround.material = largeGroundMat;
   largeGround.position.y = -0.01;
 }
-function createGround(scene: Scene) {
+
 function createGround(scene: Scene) {
   const groundMaterial = new StandardMaterial("groundMaterial");
   groundMaterial.diffuseTexture = new Texture(
@@ -59,8 +59,8 @@ function createGround(scene: Scene) {
   ground.material = groundMaterial;
   ground.position.y = 0.01;
   return ground;
-} 
 }
+
 function createSky(scene: Scene) {
   const skybox = MeshBuilder.CreateBox("skyBox", { size: 150 }, scene);
   const skyboxMaterial = new StandardMaterial("skyBox", scene);
@@ -75,6 +75,7 @@ function createSky(scene: Scene) {
   skybox.material = skyboxMaterial;
   return skybox;
 }
+
 function createBox(style: number) {
   //style 1 small style 2 semi detatched
   const boxMat = new StandardMaterial("boxMat");
@@ -108,6 +109,7 @@ function createBox(style: number) {
   box.material = boxMat;
   return box;
 }
+
 function createRoof(style: number) {
   const roof = MeshBuilder.CreateCylinder("roof", {
     diameter: 1.3,
@@ -123,6 +125,7 @@ function createRoof(style: number) {
   roof.material = roofMat;
   return roof;
 }
+
 function createHouse(scene: Scene, style: number) {
   const box = createBox(style);
   const roof = createRoof(style);
@@ -137,6 +140,7 @@ function createHouse(scene: Scene, style: number) {
   // last true allows combined mesh to use multiple materials
   return house;
 }
+
 function createHouses(scene: Scene, style: number) {
   //Start by locating one each of the two house types then add others
 
@@ -195,6 +199,7 @@ function createHouses(scene: Scene, style: number) {
   }
   // nothing returned by this function
 }
+
 function createTrees(scene: Scene) {
   const spriteManagerTrees = new SpriteManager(
     "treesManager",
@@ -220,6 +225,7 @@ function createTrees(scene: Scene) {
   }
   // nothing returned by this function
 }
+
 function createHemisphericLight(scene: Scene) {
   const light = new HemisphericLight(
     "light",
@@ -232,11 +238,13 @@ function createHemisphericLight(scene: Scene) {
   light.groundColor = new Color3(0, 0.2, 0.7);
   return light;
 }
+
 async function initializeAudio() {
   const audioEngine = await CreateAudioEngineAsync();
   await audioEngine.unlockAsync();
   return CreateStreamingSoundAsync("birds", "assets/audio/AMBBird.wav", { loop: true }, audioEngine);
 }
+
 function createAudioButton(scene: Scene) {
   const gui = AdvancedDynamicTexture.CreateFullscreenUI("audioUI", true, scene);
   const button = Button.CreateSimpleButton("audioButton", "🔇");
@@ -283,6 +291,7 @@ function createAudioButton(scene: Scene) {
   });
   gui.addControl(button);
 }
+
 function createArcRotateCamera(scene: Scene) {
   let camAlpha = -Math.PI / 2,
     camBeta = Math.PI / 2.5,
@@ -306,6 +315,7 @@ function createArcRotateCamera(scene: Scene) {
   camera.attachControl(true);
   return camera;
 }
+
 export default function createStartScene(engine: Engine) {
   let scene = new Scene(engine);
   let ground = createGround(scene);
