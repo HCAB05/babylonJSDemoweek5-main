@@ -24,7 +24,7 @@ let eng = new Engine(canvas, true, {}, true);
 
 async function main() {
   const startScene = await createStartScene(eng);
-  createCharacterController(startScene.scene);
+  createCharacterController(startScene);
   createRunScene(startScene);
 
   eng.runRenderLoop(() => {

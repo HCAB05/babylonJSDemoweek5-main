@@ -223,22 +223,28 @@ function addAssets(scene: Scene, sceneData: SceneData) {
 }
 
 export default async function createStartScene(engine: Engine) {
-  const sceneData: SceneData = { scene: new Scene(engine) };
+  interface SceneData {
+    scene: Scene;
+    light?: HemisphericLight;
+    ground?: PhysicsAggregate;
+    camera?: ArcRotateCamera;
+    box1?:Mesh;
+    box2?:Mesh;
+  }  
+  
+  const that: SceneData = { scene: new Scene(engine) };
 
-  const hk = await getHavok();
-  sceneData.scene.enablePhysics(
-    new Vector3(0, -9.81, 0),
-    new HavokPlugin(true, hk),
-  );
+    const hk = await getHavok();
+    that.scene.enablePhysics(new Vector3(0, -9.81, 0), new HavokPlugin(true, hk));
+  
+  //that.scene.debugLayer.show();
 
-  //sceneData.scene.debugLayer.show();
-
-  sceneData.light = createLight(sceneData.scene);
-  sceneData.ground = createGround(sceneData.scene);
-  sceneData.camera = createArcRotateCamera(sceneData.scene);
-  sceneData.box1 = createBox1(sceneData.scene);
-  sceneData.box2 = createBox2(sceneData.scene);
-  const assetsManager = addAssets(sceneData.scene, sceneData);
+  that.light = createLight(that.scene);
+  that.ground = createGround(that.scene);
+  that.camera = createArcRotateCamera(that.scene);
+  that.box1 = createBox1(that.scene);
+  that.box2 = createBox2(that.scene);
+  const assetsManager = addAssets(that.scene, that);
   assetsManager.load();
-  return sceneData;
+  return that;
 }
